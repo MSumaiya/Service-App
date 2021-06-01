@@ -4,6 +4,9 @@ import React from 'react'
 import { Link } from 'react-router-dom';
 
 const Navbar = (props) => {
+
+  const { user, isAuth } = props.auth
+  const { logout } = props
   return (
     <nav 
     id={props.id || ''}
@@ -15,7 +18,7 @@ const Navbar = (props) => {
           <Link 
           to="/"
           className="navbar-item">
-             <div className="title">A<span style={{fontWeight: 'bold', fontSize:'50px'}}>2</span >Z <span style={{fontWeight: 'bold', fontSize:'50px', color:'green'}}>S</span>ervice</div>
+            <div className="title">A<span style={{fontWeight: 'bold', fontSize:'50px'}}>2</span >Z <span style={{fontWeight: 'bold', fontSize:'50px', color:'green'}}>S</span>ervice</div>
           </Link>
 
           <a className="navbar-item is-hidden-desktop is-hidden-tablet">
@@ -51,6 +54,11 @@ const Navbar = (props) => {
           </div>
 
           <div className="navbar-end">
+            { user &&
+                <div className="navbar-item is-secondary user-welcome">
+                {`Hi ${user.fullName}`}
+                </div>
+            }
             <Link to="/" 
             className="navbar-item is-secondary">
                 Home
@@ -80,18 +88,32 @@ const Navbar = (props) => {
                 </a>
               </div>
             </div>
-            <Link 
-            to="/login"
-            className="navbar-item is-secondary modal-trigger" data-modal="auth-modal">
-                Login
-            </Link>
-            <Link 
-            to="/register"
-            className="navbar-item">
-              <span className="button signup-button rounded secondary-btn raised">
-                  Register
-              </span>
-            </Link>
+            { !isAuth &&
+            <React.Fragment>
+                <Link 
+                to="/login"
+                className="navbar-item is-secondary modal-trigger" data-modal="auth-modal">
+                    Login
+                </Link>
+                <Link 
+                to="/register"
+                className="navbar-item">
+                  <span className="button signup-button rounded secondary-btn raised">
+                      Register
+                  </span>
+                </Link>
+                </React.Fragment>
+            }
+            {
+              isAuth&&
+              <div 
+              onClick={logout}
+              className="navbar-item">
+                <span className="button signup-button is-danger rounded raised">
+                    Logout
+                </span>
+              </div>
+            }
           </div>
         </div>
       </div>

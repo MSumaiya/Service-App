@@ -65,7 +65,7 @@ import initStore from './store'
 
 import { BrowserRouter as Router } from 'react-router-dom'
 import ServiceApp from './ServiceApp'
-import { onAuthStateChanged } from './actions'
+import { onAuthStateChanged, storeAuthUser } from './actions'
 //import auth from './reducers/auth';
 
 const store = initStore()
@@ -73,10 +73,12 @@ const store = initStore()
 class App extends React.Component {
 
 componentDidMount(){
-  debugger
-  onAuthStateChanged(authUser=>{
-      debugger
+  this.unsubscribeAuth = onAuthStateChanged(authUser=>{
+      store.dispatch(storeAuthUser(authUser))
     })
+}
+componentWillUnmount(){
+  this.unsubscribeAuth()
 }
 
   render(){
