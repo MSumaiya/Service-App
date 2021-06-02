@@ -8,13 +8,13 @@ import Spinner from '../components/Spinner'
 const ServiceDetail = props => {
 
     const { serviceId } = useParams()
-    const { dispatch, isFetching } = props
+    const { fetchServiceById, isFetching } = props
 
     useEffect(()=>{
         //dispatch(resetPreviousService())
         //dispatch(requestService())
-        dispatch(fetchServiceById(serviceId))
-    }, [serviceId, dispatch])
+        fetchServiceById(serviceId)
+    }, [serviceId, fetchServiceById])
 
     const { service } = props
 
@@ -47,7 +47,7 @@ const ServiceDetail = props => {
                     </div>
                 </div>
                 </div>
-               {/*  <div className="hero-foot">
+            {/*  <div className="hero-foot">
                 <div className="container">
                     <div className="tabs is-centered">
                     <ul>
@@ -68,4 +68,4 @@ const mapStateToProps = ({selectedService}) =>(
     
     )
 
-export default connect(mapStateToProps)(ServiceDetail)
+export default connect(mapStateToProps, {fetchServiceById})(ServiceDetail)

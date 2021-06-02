@@ -12,7 +12,7 @@ class Home extends React.Component {
   }
 
   componentDidMount(){
-    this.props.dispatch(fetchServices())
+    this.props.fetchServices()
   
   }
   renderServices = (services) => services.map(service => <ServiceItem key={service.id} service={service}/>
@@ -49,4 +49,4 @@ const mapStateToProps = state =>  ({services: state.services.all})
   
 
 
-export default connect(mapStateToProps) (Home)
+export default connect(mapStateToProps, {fetchServices}) (Home)
