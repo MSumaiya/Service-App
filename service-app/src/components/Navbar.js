@@ -2,12 +2,10 @@
 
 import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom';
-
-const Navbar = (props) => {
+const Navbar = props => {
 
   const { user, isAuth } = props.auth
-  const { logout } = props
-  const { loadFresh } = props
+  const { logout, loadFresh } = props
 
   useEffect(() => {
     if (!loadFresh) { return }
@@ -17,18 +15,20 @@ const Navbar = (props) => {
     script.async = true
     document.body.appendChild(script)
   }, [loadFresh])
+
+
   return (
     <nav 
-    id={props.id || ''}
-    className="navbar is-fresh is-transparent no-shadow" 
-    role="navigation" 
-    aria-label="main navigation">
+      id={props.id || ''}
+      className="navbar is-fresh is-transparent no-shadow" 
+      role="navigation" 
+      aria-label="main navigation">
       <div className="container">
         <div className="navbar-brand">
           <Link 
-          to="/"
-          className="navbar-item">
-            <div className="title">A<span style={{fontWeight: 'bold', fontSize:'50px'}}>2</span >Z <span style={{fontWeight: 'bold', fontSize:'50px', color:'green'}}>S</span>ervice</div>
+            to="/"
+            className="navbar-item">
+            <div className="title">A<span style={{color: "green", fontSize:"50px"}}>2</span>Z Service</div>
           </Link>
 
           <a className="navbar-item is-hidden-desktop is-hidden-tablet">
@@ -65,60 +65,64 @@ const Navbar = (props) => {
 
           <div className="navbar-end">
             { user &&
-                <div className="navbar-item is-secondary user-welcome">
+              <div className="navbar-item is-secondary user-welcome">
                 {`Hi ${user.fullName}`}
-                </div>
-            }
-            <Link to="/" 
-            className="navbar-item is-secondary">
+              </div>
+            } 
+            <Link 
+              to="/" 
+              className="navbar-item is-secondary">
                 Home
             </Link>
-            <Link to="/services" 
-            className="navbar-item is-secondary">
+            <Link 
+              to="/services" 
+              className="navbar-item is-secondary">
                 Services
             </Link>
-            <Link to="/faq" 
-            className="navbar-item is-secondary">
-                FAQ
+            <Link 
+              to="/faq" 
+              className="navbar-item is-secondary">
+                Faq
             </Link>
-            <div className="navbar-item has-dropdown is-hoverable">
-              <a className="navbar-link">
-                  Dropdown
-              </a>
-
-              <div className="navbar-dropdown">
-                <a className="navbar-item">
-                    Dropdown item
+            { isAuth &&
+              <div className="navbar-item has-dropdown is-hoverable">
+                <a className="navbar-link">
+                    Manage
                 </a>
-                <a className="navbar-item">
-                    Dropdown item
-                </a>
-                <a className="navbar-item">
-                    Dropdown item
-                </a>
+                <div className="navbar-dropdown">
+                  <Link 
+                    to="/services/new"
+                    className="navbar-item">
+                      Create Service
+                  </Link>
+                  <Link 
+                    to="/services/me"
+                    className="navbar-item">
+                      Your Services
+                  </Link>
+                </div>
               </div>
-            </div>
+            }
             { !isAuth &&
-            <React.Fragment>
-                <Link 
-                to="/login"
-                className="navbar-item is-secondary modal-trigger" data-modal="auth-modal">
+              <React.Fragment>
+                <Link
+                  to="/login"
+                  className="navbar-item is-secondary modal-trigger" data-modal="auth-modal">
                     Login
                 </Link>
                 <Link 
-                to="/register"
-                className="navbar-item">
+                  to="/register"
+                  className="navbar-item">
                   <span className="button signup-button rounded secondary-btn raised">
                       Register
                   </span>
                 </Link>
-                </React.Fragment>
+              </React.Fragment>
             }
-            {
-              isAuth&&
+            { isAuth &&
               <div 
-              onClick={logout}
-              className="navbar-item">
+                onClick={logout}
+                className="navbar-item">
                 <span className="button signup-button is-danger rounded raised">
                     Logout
                 </span>

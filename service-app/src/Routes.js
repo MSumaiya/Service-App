@@ -10,32 +10,41 @@ import LoginPage from './pages/Login'
 import RegisterPage from './pages/Register'
 import SecretPage from './pages/Secret'
 
+import ServiceCreatePage from './pages/services/ServiceCreate'
+import UserServicesPage from './pages/services/UserServices'
+
 const Routes = () => 
 <Switch>
-    <Route path="/secret">
+<Route path="/secret">
     <SecretPage />
-    </Route>
-    <Route path="/register">
+</Route>
+<Route path="/register">
     <RegisterPage />
-    </Route>
-    <Route path="/login">
+</Route>
+<Route path="/login">
     <LoginPage />
-    </Route>
-    <Route path="/services/:serviceId">
+</Route>
+<Route path="/services/me">
+    <UserServicesPage />
+</Route>
+<Route path="/services/new">
+    <ServiceCreatePage />
+</Route>
+<Route path="/services/:serviceId">
     <ServiceDetailPage />
-    </Route>
-    <Route path="/services">
+</Route>
+<Route path="/services">
     <ServicesPage />
-    </Route>
-    <Route path="/profile">
+</Route>
+<Route path="/profile">
     <ProfilePage />
-    </Route>
-    <Route path="/faq">
+</Route>
+<Route path="/faq">
     <FaqPage />
-    </Route>
-    <Route path="/">
+</Route>
+<Route path="/">
     <HomePage />
-    </Route>
+</Route>
 </Switch>
 
 export default Routes

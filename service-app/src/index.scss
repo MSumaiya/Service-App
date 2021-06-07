@@ -29,6 +29,11 @@ $border-grey: #ccc;
 $muted-grey: #999;
 $section-grey: #fbfbfb;
 
+//MODAL
+.modal { 
+    text-align: left !important;
+}
+
 //AUTH STARTS
 
 .auth-page {
@@ -65,6 +70,22 @@ $section-grey: #fbfbfb;
     }
 
   //AUTH ENDS
+  //SERVICE CREATE
+.create-page {
+    margin-top: 70px;
+    margin-bottom: 70px;
+
+    .form-container {
+    max-width: 860px;
+    margin: 0 auto;
+    }
+
+    .field.is-grouped {
+    margin-top: 20px;
+    }
+}
+
+ //SERVICE CREATE ENDS
 
 /* ==========================================================================
 General Keyframes animations
