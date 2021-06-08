@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import Hero from '../components/Hero'
-import ServiceItem from '../components/service/serviceItem'
+import ServiceItem from '../components/service/ServiceItem'
 
 
 import { fetchServices } from '../actions'

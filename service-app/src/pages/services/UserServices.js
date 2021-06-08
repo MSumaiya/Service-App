@@ -3,7 +3,7 @@ import withAuthorization from '../../components/hoc/withAuthorization'
 //import { connect } from 'react-redux'
 
 import { fetchUserServices } from '../../actions'
-import ServiceItem from '../../components/service/serviceItem'
+import ServiceItem from '../../components/service/ServiceItem'
 
 class UserServices extends React.Component {
 
